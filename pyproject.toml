@@ -1,0 +1,11 @@
+[project]
+name = "simple-search"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.1.0",
+    "langchain-community>=0.1.0",
+    "pypdf>=3.8.0",
+]
