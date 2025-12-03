@@ -1,5 +1,6 @@
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.documents import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 import settings
 
@@ -16,8 +17,17 @@ documents = [
 
 file_path = settings.BASE_DIR + "/example_data/nke-10k-2023.pdf"
 loader = PyPDFLoader(file_path)
-pdf_documents = loader.load()
+docs = loader.load()
 
-print(f"Loaded {len(pdf_documents)} documents from the PDF.")
-print(f"First document content preview: {pdf_documents[0].page_content[:200]}...")
-print(f"First document metadata: {pdf_documents[0].metadata}")
+print(f"Loaded {len(docs)} documents from the PDF.")
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200,
+    add_start_index=True,
+)
+docs = text_splitter.split_documents(docs)
+
+print(f"Number of documents after splitting: {len(docs)}")
+print(f"First document content preview: {docs[0].page_content[:200]}...")
+print(f"First document metadata: {docs[0].metadata}")
