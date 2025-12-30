@@ -1,0 +1,62 @@
+{
+  "name": "sample-fullstack-project",
+  "structure": {
+    "src": {
+      "SampleApp.Domain": {
+        "Entities": ["User.cs", "Product.cs"],
+        "Interfaces": ["IUserRepository.cs", "IProductRepository.cs"],
+        "Services": ["DomainService.cs"]
+      },
+      "SampleApp.Application": {
+        "Commands": ["CreateUserCommand.cs", "UpdateProductCommand.cs"],
+        "Queries": ["GetUsersQuery.cs", "GetProductsQuery.cs"],
+        "Handlers": ["CreateUserCommandHandler.cs", "GetUsersQueryHandler.cs"],
+        "DTOs": ["UserDto.cs", "ProductDto.cs"],
+        "Validators": ["CreateUserCommandValidator.cs"]
+      },
+      "SampleApp.Infrastructure": {
+        "Data": ["ApplicationDbContext.cs"],
+        "Repositories": ["UserRepository.cs", "ProductRepository.cs"],
+        "Services": ["EmailService.cs"]
+      },
+      "SampleApp.API": {
+        "Controllers": ["UsersController.cs", "ProductsController.cs"],
+        "Program.cs": "exists",
+        "appsettings.json": "exists"
+      }
+    },
+    "ClientApp": {
+      "src": {
+        "components": ["UserList.tsx", "ProductForm.tsx"],
+        "store": {
+          "slices": ["userSlice.ts", "productSlice.ts"]
+        },
+        "App.tsx": "exists"
+      },
+      "package.json": "exists"
+    },
+    "tests": {
+      "SampleApp.API.Tests": ["UsersControllerTests.cs"],
+      "e2e": ["user-management.spec.ts", "product-crud.spec.ts"]
+    }
+  },
+  "expected_analysis": {
+    "backend": {
+      "dotnet_version": "8.0+",
+      "clean_architecture": true,
+      "cqrs": true,
+      "entity_framework": true,
+      "fluent_validation": true,
+      "layers": ["Domain", "Application", "Infrastructure", "API"]
+    },
+    "frontend": {
+      "react_version": "18+",
+      "typescript": true,
+      "redux": true,
+      "playwright": true
+    },
+    "database": {
+      "postgresql": true
+    }
+  }
+}
